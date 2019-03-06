@@ -21,8 +21,9 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-              sh 'npm run serve'
-              input message: 'Finished using the web site? (Click "Proceed" to continue)'
+              sh 'serve -s dist'
+              // input message: 'Finished using the web site? (Click "Proceed" to continue)'
+              echo 'Done...'
             }
         }
     }
