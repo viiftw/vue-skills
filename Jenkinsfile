@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'node:6.3' } }
+    agent { docker { image 'node:8.11' } }
     environment {
         CI = 'true'
     }
@@ -21,7 +21,8 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+              sh 'npm run dev'
+              input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
         }
     }
