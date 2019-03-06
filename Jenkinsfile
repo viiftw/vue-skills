@@ -1,5 +1,9 @@
 pipeline {
-    agent { docker { image 'node:8.11' } }
+    agent { docker { 
+        image 'node:8.11'
+        args '-p 5000:5000' 
+      } 
+    }
     environment {
         CI = 'true'
     }
@@ -22,8 +26,8 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-              sh 'serve -s dist'
-              // input message: 'Finished using the web site? (Click "Proceed" to continue)'
+              sh './scripts/deliver.sh'
+              input message: 'Finished using the web site? (Click "Proceed" to continue)'
               echo 'Done...'
             }
         }
